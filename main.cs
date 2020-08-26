@@ -93,7 +93,7 @@ Deseja-se saber:
       case 10:
         return "Você Votou em Roberto Nove";
       
-      case 0:
+      case 1:
         return "Você Votou em Voto branco";
       
       case 4:
@@ -105,37 +105,47 @@ Deseja-se saber:
 
   }
 
-  public static int totais (int cand_1, int cand_2, int cand_3, int branco, int nulo) {
-    
-    int maior = cand_1;
+  public static string totais (int cand_1, int cand_2, int cand_3, int branco, int nulo) {
 
-    if (cand_2 > maior)
+    int maior = 0;
+    string pessoa = "";
+
+    if (cand_1 > maior){
+      maior = cand_1;
+      pessoa = "José Couve";
+      
+    }
+    else if (cand_2 > maior){
       maior = cand_2;
-    
-    
-    else if (cand_3 > maior)
+      pessoa = "Joana Bravo";
+      
+    }
+    else if (cand_3 > maior){
       maior = cand_3;
-    
-
-    else if (branco > maior)
+      pessoa = "Roberto Nove";
+      
+    }
+    else if (branco > maior){
       maior = branco;
+      pessoa = "branco";
+      
+    }
+    else{
+      maior = nulo;
+      pessoa = "nulo";
+      
+      }
     
-
-    else
-      maior = branco;
     
-    return maior;
+    return $"O mais votado foi o(a) {pessoa} com {maior} votos";
 
   }
-
-
-
 
   // Função Principal Main
 
   public static void Main () {
 
-    /*//Exercicio 1
+    //Exercicio 1
 
     Console.WriteLine("Exercicio 1");
 
@@ -168,12 +178,14 @@ Deseja-se saber:
 
     Console.Write("Insira a quantidade do produto >>");
     quant = int.Parse(Console.ReadLine());
-
-
     
-    Console.WriteLine($"Preço Total: R$ {Cardapio(cod,quant)}");*/
+    Console.WriteLine($"Preço Total: R$ {Cardapio(cod,quant)}");
+
+
 
     //Exercicio 3
+
+    Console.WriteLine("\n33 - José Couve\n25 - Joana Bravo\n10 - Roberto Nove\n1 - Voto branco\n4 - Voto nulo");
 
     //Variaveis dos candidatos
     
@@ -189,19 +201,19 @@ Deseja-se saber:
 
     Console.Write("Quantidade de Eleitores >> ");
 
-    int quant = int.Parse(Console.ReadLine());
+    int quant_cand = int.Parse(Console.ReadLine());
     
     do {
       
       Console.Write("Digite o Código do Candidato >> ");
 
-      int cod = int.Parse(Console.ReadLine());
+      int cod_cand = int.Parse(Console.ReadLine());
 
-      Console.WriteLine(votacao(cod));
+      Console.WriteLine(votacao(cod_cand));
 
       contador ++;
 
-      switch (cod){
+      switch (cod_cand){
         case 33:
           cand_1 ++;
           break;
@@ -214,7 +226,7 @@ Deseja-se saber:
           cand_3 ++;
           break;
         
-        case 0:
+        case 1:
           branco ++;
           break;
         
@@ -228,9 +240,9 @@ Deseja-se saber:
       }
     }
 
-    while (contador < quant);
+    while (contador < quant_cand);
 
-    Console.WriteLine($"O maior{totais(cand_1,cand_2,cand_3,branco,nulo)}");
+    Console.WriteLine(totais(cand_1,cand_2,cand_3,branco,nulo));
     Console.WriteLine($"Numeros De Votos Brancos >> {branco}");
     Console.WriteLine($"Numeros De Votos Nulos >> {nulo}");
 
