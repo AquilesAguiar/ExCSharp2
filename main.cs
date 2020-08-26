@@ -81,13 +81,50 @@ Deseja-se saber:
 - O total de votos em branco;
 - O total de votos nulos; */
 
-  public static int votacao (int cod,int quant){
-    int 
-    while (quant)
-    switch (cod){
+  public static string votacao (int cod){
+
+    switch ( cod ) {
       case 33:
-        return
-    }
+        return "Você Votou em José Couve";
+      
+      case 25:
+        return "Você Votou em Joana Bravo";
+      
+      case 10:
+        return "Você Votou em Roberto Nove";
+      
+      case 0:
+        return "Você Votou em Voto branco";
+      
+      case 4:
+       return "Você Votou em Voto nulo";
+      
+      default:
+        return "DIGITA CERTO";
+      }
+
+  }
+
+  public static int totais (int cand_1, int cand_2, int cand_3, int branco, int nulo) {
+    
+    int maior = cand_1;
+
+    if (cand_2 > maior)
+      maior = cand_2;
+    
+    
+    else if (cand_3 > maior)
+      maior = cand_3;
+    
+
+    else if (branco > maior)
+      maior = branco;
+    
+
+    else
+      maior = branco;
+    
+    return maior;
 
   }
 
@@ -98,7 +135,7 @@ Deseja-se saber:
 
   public static void Main () {
 
-    //Exercicio 1
+    /*//Exercicio 1
 
     Console.WriteLine("Exercicio 1");
 
@@ -134,13 +171,68 @@ Deseja-se saber:
 
 
     
-    Console.WriteLine($"Preço Total: R$ {Cardapio(cod,quant)}");
+    Console.WriteLine($"Preço Total: R$ {Cardapio(cod,quant)}");*/
 
     //Exercicio 3
 
+    //Variaveis dos candidatos
+    
+    int cand_1 = 0;
+    int cand_2 = 0;
+    int cand_3 = 0;
+    int branco = 0;
+    int nulo   = 0;
 
+    // While
+    
+    int contador = 0;
 
+    Console.Write("Quantidade de Eleitores >> ");
 
-   
+    int quant = int.Parse(Console.ReadLine());
+    
+    do {
+      
+      Console.Write("Digite o Código do Candidato >> ");
+
+      int cod = int.Parse(Console.ReadLine());
+
+      Console.WriteLine(votacao(cod));
+
+      contador ++;
+
+      switch (cod){
+        case 33:
+          cand_1 ++;
+          break;
+        
+        case 25:
+          cand_2 ++;
+          break;
+        
+        case 10:
+          cand_3 ++;
+          break;
+        
+        case 0:
+          branco ++;
+          break;
+        
+        case 4:
+          nulo ++;
+          break;
+
+        default:
+          Console.WriteLine( "DIGITA CERTO" );
+          break;
+      }
+    }
+
+    while (contador < quant);
+
+    Console.WriteLine($"O maior{totais(cand_1,cand_2,cand_3,branco,nulo)}");
+    Console.WriteLine($"Numeros De Votos Brancos >> {branco}");
+    Console.WriteLine($"Numeros De Votos Nulos >> {nulo}");
+
   }
 }
